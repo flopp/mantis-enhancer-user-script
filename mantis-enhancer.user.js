@@ -1,16 +1,16 @@
 // ==UserScript==
 // @name         Mantis Enhancer
 // @namespace    http://flopp.net/
-// @version      0.2
+// @version      0.2.1
 // @description  Several enhancements for Mantis BT
 // @author       Florian Pigorsch
 // @downloadURL  https://raw.githubusercontent.com/flopp/mantis-enhancer-user-script/master/mantis-enhancer.user.js
 // @updateURL    https://raw.githubusercontent.com/flopp/mantis-enhancer-user-script/master/mantis-enhancer.user.js
-// @include      .*/bug_report_page\.php
-// @include      .*/bug_update_page\.php
-// @include      .*/view\.php\?id=\d+
-// @include      .*/bugnote_edit_page\.php\??bugnote_id=\d+
-// @include      .*/account_prof_menu_page\.php
+// @match        *://*/bug_report_page.php
+// @match        *://*/bug_update_page.php
+// @match        *://*/view.php?id=*
+// @match        *://*/bugnote_edit_page.php?bugnote_id=*
+// @match        *://*/account_prof_menu_page.php
 // @grant        none
 // ==/UserScript==
 
