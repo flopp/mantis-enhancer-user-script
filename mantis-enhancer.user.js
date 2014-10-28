@@ -60,6 +60,7 @@ function insertTag(textAreaId, tag)
     };
 }
 
+
 function insertListTags(textAreaId, tag)
 {    
     return function(){
@@ -87,6 +88,57 @@ function insertListTags(textAreaId, tag)
     };
 }
 
+
+function indentLine(line, depth)
+{
+  if (depth >= 0)
+  {
+    for (var i = 0; i != depth; ++i)
+    {
+      line = ' ' + line;
+    }
+  }
+  else 
+  {
+    while (depth < 0)
+    {
+      if (line.indexOf(' ') == 0)
+      {
+        line = line.substr(1, line.length - 1);
+      }
+      ++depth;
+    }
+  }
+  
+  return line;
+}
+
+
+function indent(textAreaId, depth)
+{
+    return function(){
+        var textArea = document.getElementById(textAreaId);
+        var start = textArea.selectionStart;
+        var end = textArea.selectionEnd;
+        while (start > 0 && textArea.value[start] != '\n')
+        {
+          start -= 1;
+        }
+        var selection = textArea.value.substring(start, end);
+        
+        var lines = selection.split('\n');
+        for (var i = 0; i != lines.length; ++i)
+        {
+          lines[i] = indentLine(line, depth);
+        }
+        
+        var insertText += lines.join('\n');
+        textArea.value = textArea.value.substr(0, start) + insertText + textArea.value.substr(end, textArea.value.length);
+        textArea.focus();
+      };
+}
+
+
 function createButton(icon, tooltip, buttonFunction)
 {
     var i = document.createElement('i');
@@ -100,6 +152,7 @@ function createButton(icon, tooltip, buttonFunction)
     
     return b;
 }
+
 
 function addTextAreaButtons()
 {
@@ -130,6 +183,12 @@ function addTextAreaButtons()
         listGroup.appendChild(createButton('list-ul', 'unordered list', insertListTags(textAreaId, 'ul')));
         listGroup.appendChild(createButton('list-ol', 'ordered list', insertListTags(textAreaId, 'ol')));
         listGroup.appendChild(createButton('minus', 'list item', insertTag(textAreaId, 'li')));
+        
+        var indentGroup = document.createElement('div');
+        indentGroup.setAttribute('class', 'button-group');
+        buttonArea.appendChild(indentGroup);
+        indentGroup.appendChild(createButton('indent', 'indent lines', indent(textAreaId, 2)));
+        indentGroup.appendChild(createButton('outdent', 'outdent lines', indent(textAreaId, -2)));
     }
 }
 
