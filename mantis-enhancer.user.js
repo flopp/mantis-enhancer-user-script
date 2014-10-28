@@ -120,7 +120,7 @@ function indent(textAreaId, depth)
         var textArea = document.getElementById(textAreaId);
         var start = textArea.selectionStart;
         var end = textArea.selectionEnd;
-        while (start > 0 && textArea.value[start] != '\n')
+        while (start > 0 && textArea.value[start-1] != '\n')
         {
           start = start - 1;
         }
@@ -134,6 +134,8 @@ function indent(textAreaId, depth)
         
         var insertText = lines.join('\n');
         textArea.value = textArea.value.substr(0, start) + insertText + textArea.value.substr(end, textArea.value.length);
+        textArea.selectionStart = start;
+        textArea.selectionEnd = start + insertText.length;
         textArea.focus();
       };
 }
