@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mantis Enhancer
 // @namespace    http://flopp.net/
-// @version      0.2.3
+// @version      0.2.4
 // @description  Several enhancements for Mantis BT
 // @author       Florian Pigorsch
 // @downloadURL  https://raw.githubusercontent.com/flopp/mantis-enhancer-user-script/master/mantis-enhancer.user.js
@@ -129,7 +129,7 @@ function indent(textAreaId, depth)
         var lines = selection.split('\n');
         for (var i = 0; i != lines.length; ++i)
         {
-          lines[i] = indentLine(line, depth);
+          lines[i] = indentLine(lines[i], depth);
         }
         
         var insertText = lines.join('\n');
