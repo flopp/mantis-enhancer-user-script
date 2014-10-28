@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mantis Enhancer
 // @namespace    http://flopp.net/
-// @version      0.2.2
+// @version      0.2.3
 // @description  Several enhancements for Mantis BT
 // @author       Florian Pigorsch
 // @downloadURL  https://raw.githubusercontent.com/flopp/mantis-enhancer-user-script/master/mantis-enhancer.user.js
@@ -49,7 +49,7 @@ function insertTag(textAreaId, tag)
         var insertText = "<" + tag + ">"+selection+"</" + tag + ">";
         textArea.value = textArea.value.substr(0, start) + insertText + textArea.value.substr(end, textArea.value.length);
         
-        if (selection == ''){
+        if (selection.length == 0){
             textArea.selectionStart = start + tag.length + 2;
             textArea.selectionEnd = start + tag.length + 2;
         } else {
@@ -122,7 +122,7 @@ function indent(textAreaId, depth)
         var end = textArea.selectionEnd;
         while (start > 0 && textArea.value[start] != '\n')
         {
-          start -= 1;
+          start = start - 1;
         }
         var selection = textArea.value.substring(start, end);
         
@@ -132,7 +132,7 @@ function indent(textAreaId, depth)
           lines[i] = indentLine(line, depth);
         }
         
-        var insertText += lines.join('\n');
+        var insertText = lines.join('\n');
         textArea.value = textArea.value.substr(0, start) + insertText + textArea.value.substr(end, textArea.value.length);
         textArea.focus();
       };
