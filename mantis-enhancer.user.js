@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mantis Enhancer
 // @namespace    http://flopp.net/
-// @version      0.2.5
+// @version      0.2.6
 // @description  Several enhancements for Mantis BT
 // @author       Florian Pigorsch
 // @downloadURL  https://raw.githubusercontent.com/flopp/mantis-enhancer-user-script/master/mantis-enhancer.user.js
@@ -11,7 +11,7 @@
 // @match        *://*/view.php?id=*
 // @match        *://*/bugnote_edit_page.php?bugnote_id=*
 // @match        *://*/account_prof_menu_page.php
-// @grant        none
+// @grant        unsafeWindow
 // ==/UserScript==
 
 
@@ -24,6 +24,18 @@ function loadStylesheet(url)
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', url);
     head.appendChild(link);
+}
+
+
+function loadScript(url)
+{
+    var head = document.getElementsByTagName('head')[0]; 
+    if (!head) { return; }
+    
+    var element = document.createElement('script');
+    element.setAttribute('type', 'text/javascript');
+    element.setAttribute('src', url);
+    head.appendChild(element);
 }
 
 
@@ -194,8 +206,9 @@ function addTextAreaButtons()
     }
 }
 
+
 loadStylesheet('http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css');
-addGlobalStyle('textarea { width: 100% !important; }');
+addGlobalStyle('textarea { width: 100% !important; height: 250px; }');
 addGlobalStyle('.button-area { width: 100%; }');
 addGlobalStyle('.button-area .button-group { display: inline-block; margin-right: 4px; }');
 addGlobalStyle('.button-area .button-group .button { padding: 8px 12px; border: 1px solid transparent; border-radius: 4px; margin-right: 2px; background-color: #428bca; color: white; display: inline-block; cursor: pointer; }');
