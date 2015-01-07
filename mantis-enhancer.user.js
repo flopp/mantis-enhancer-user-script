@@ -228,5 +228,6 @@ addGlobalStyle('textarea { width: 100% !important; height: 250px; }');
 addGlobalStyle('.button-area { width: 100%; }');
 addGlobalStyle('.button-area .button-group { display: inline-block; margin-right: 4px; }');
 addGlobalStyle('.button-area .button-group .button { padding: 8px 12px; border: 1px solid transparent; border-radius: 4px; margin-right: 2px; background-color: #428bca; color: white; display: inline-block; cursor: pointer; }');
+addGlobalStyle('td .bugnote-public { width: 200px; }');
 addTextAreaButtons();
 resizeTables();
