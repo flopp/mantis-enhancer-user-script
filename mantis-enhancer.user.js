@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Mantis Enhancer
 // @namespace    http://flopp.net/
-// @version      0.2.7
+// @version      0.2.8
 // @description  Several enhancements for Mantis BT
 // @author       Florian Pigorsch
 // @downloadURL  https://raw.githubusercontent.com/flopp/mantis-enhancer-user-script/master/mantis-enhancer.user.js
@@ -212,7 +212,7 @@ function resizeTables()
     for (var i = 0; i != tds.length; ++i)
     {
         var td = tds[i];
-        var w = td.getAttributr('width');
+        var w = td.getAttribute('width');
         
         if (w === '25%') {
             td.setAttribute('width', '200px');
